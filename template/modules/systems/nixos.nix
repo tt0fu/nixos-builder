@@ -1,3 +1,3 @@
 {
-  os = throw "Insert your hardware-configuration.nix contents here";
+  os = throw "Add your hardware-configuration.nix contents to modules/systems";
 }
