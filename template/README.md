@@ -28,7 +28,7 @@ $ sudo nixos-rebuild switch
 
 ```sh
 $ mkdir nixos-config && cd nixos-config
-$ nix flake init -t github:tt0fu/nixos-builder nixos-config
+$ nix flake init -t github:tt0fu/nixos-builder
 ```
 
 4. Add your `hardware-configuration.nix` as a module in `./modules/systems/<your hostname>.nix`. Don't forget to wrap it:

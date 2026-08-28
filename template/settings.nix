@@ -18,7 +18,6 @@
         modules: with modules; [
           systems.nixos
           core
-          de
           programs.essential
           programs.utils
           programs.misc
