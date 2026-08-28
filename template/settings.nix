@@ -1,6 +1,6 @@
 {
   userSettings = {
-    username = "ttofu";
+    username = "alice";
   };
 
   baseStyle = {

@@ -1,5 +1,5 @@
 {
-  description = "ttofu's nixos config";
+  description = "Nixos-builder template NixOS config";
 
   inputs = {
     # Do not edit the inputs between the markers. They will get rewritten by
