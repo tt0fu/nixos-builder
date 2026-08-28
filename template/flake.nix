@@ -2,9 +2,10 @@
   description = "Nixos-builder template NixOS config";
 
   inputs = {
+    nixos-builder.url = "github:tt0fu/nixos-builder";
+    
     # Do not edit the inputs between the markers. They will get rewritten by
     # `nix run .#generate-inputs` (run automatically by build.sh / update.sh).
-    nixos-builder.url = "github:tt0fu/nixos-builder";
     # GENERATED INPUTS START
     home-manager = {
       inputs = {
