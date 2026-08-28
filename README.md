@@ -1,6 +1,6 @@
 # ttofu's NixOS builder flake
 
-## Installation
+## Installation and usage
 
 See [the template config README](template/README.md)
 
