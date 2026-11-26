@@ -10,7 +10,7 @@ Each module has the following structure:
 
 ```nix
 {
-  enable = <set to false to disable all module contributions>;
+  enable = <set to false to skip this module when its directory is referenced; a direct reference by name still enables it>;
   inputs = <flake input expression>;
   os = <nixos configuration expression>;
   home = <home-manager configuration expression>;
@@ -21,7 +21,7 @@ Each module has the following structure:
 }
 ```
 
-The generated inputs from the modules live between `# GENERATED INPUTS START` and `# GENERATED INPUTS END` markers in `flake.nix` and should not be edited by hand — they are rewritten by `nix run .#generate-inputs`.
+The generated inputs from the modules live between `# GENERATED INPUTS START` and `# GENERATED INPUTS END` markers in `flake.nix` and should not be edited by hand - they are rewritten by `nix run .#generate-inputs`.
 
 A hypothetical example:
 
@@ -71,3 +71,5 @@ Module lists (in `settings.nix` and in the `deps` attribute of any module) may r
 - If the directory contains a `default.nix`, only that `default.nix` module is
   added - the directory decides its own inclusion logic.
 - If the directory doesn't contain a `default.nix`, every `.nix` file and subdirectory in it is added, applying the same rules recursively.
+
+A module with `enable = false` is skipped when it is reached through a directory reference, but is still included when it is referenced directly by name. For example, `modules.example.foo` includes `example/foo.nix` even if it is disabled, while referencing `modules.example` (or `example` inside a `deps` list) only includes it when it is enabled. This applies at any depth, so `modules.example.nested.foo` is a direct reference to `foo.nix`, but `modules.example.nested` is a directory reference.

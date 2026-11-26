@@ -36,24 +36,24 @@ let
       ) (builtins.attrNames entries)
     );
 
-  expandModule =
-    module:
+  expandModuleWith =
+    direct: module:
     if builtins.isAttrs module then
       if module ? ${directoryMarker} then
         if module ? default then
-          expandModule module.default
+          expandModuleWith false module.default
         else
-          builtins.concatMap expandModule (
+          builtins.concatMap (expandModuleWith false) (
             map (n: module.${n}) (builtins.filter (n: n != directoryMarker) (builtins.attrNames module))
           )
-      else if !module.enable or true then
-        [ ]
-      else
+      else if direct || (module.enable or true) then
         [ module ]
+      else
+        [ ]
     else
       [ ];
 
-  expandModules = modules: builtins.concatMap expandModule modules;
+  expandModules = modules: builtins.concatMap (expandModuleWith true) modules;
 
   collectInputs =
     dir:
